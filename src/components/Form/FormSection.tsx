@@ -1,6 +1,7 @@
+import { z } from 'zod';
 import { createFormHook, createFormHookContexts } from '@tanstack/react-form';
 import { FormInput, FormSelect, FormButton } from './';
-import { z } from 'zod';
+import { simulationStore, updateSimulationForm } from '../../stores/simulationStore'
 
 const { fieldContext, formContext } = createFormHookContexts();
 
@@ -31,7 +32,8 @@ export const FormSection = () => {
       }),
     },
     onSubmit: ({ value }) => {
-      console.log('Formulario enviado:', value);
+      updateSimulationForm(value);
+      console.log(simulationStore.state);
     },
   });
 

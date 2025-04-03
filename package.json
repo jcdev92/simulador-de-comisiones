@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.1",
+    "@tanstack/eslint-plugin-query": "^4.38.0",
     "@tanstack/react-form": "^1.2.4",
+    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query-devtools": "^4.36.1",
     "@tanstack/react-store": "^0.7.0",
     "preline": "^3.0.1",
     "react": "^19.0.0",
