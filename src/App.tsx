@@ -1,13 +1,13 @@
 import './App.css'
-import { CommissionSimulatorLayout } from './components/CommissionSimulatorLayout'
+import { CommissionSimulator } from './components/CommissionSimulator'
 
 function App() {
 
   return (
     <>
-    <div className='w-full h-screen'>
-      <CommissionSimulatorLayout />
-    </div>
+      <div className='w-full h-screen'>
+        <CommissionSimulator />
+      </div>
     </>
   )
 }

@@ -1,2 +1,2 @@
-export { CommissionSimulatorForm } from "./Form/CommissionSimulatorForm";
-export { CommissionSimulatorTable } from "./Table/CommissionSimulatorTable";
+export { FormSection } from "./Form/FormSection";
+export { Table } from "./Table/Table";
