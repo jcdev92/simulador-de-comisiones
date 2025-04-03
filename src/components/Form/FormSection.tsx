@@ -20,20 +20,26 @@ const { useAppForm } = createFormHook({
 export const FormSection = () => {
   const form = useAppForm({
     defaultValues: {
-      capital: 0,
+      capitalSeed: 0,
       benefitType: '',
       duration: 0,
     },
     validators: {
       onChange: z.object({
-        capital: z.number().min(1, 'El capital debe ser mayor a 0'),
+        capitalSeed: z.number().min(1, 'El capital debe ser mayor a 0'),
         benefitType: z.string().nonempty('El tipo de beneficio es requerido'),
         duration: z.number().min(1, 'La duración debe ser mayor a 0'),
       }),
     },
     onSubmit: ({ value }) => {
-      updateSimulationForm(value);
-      console.log(simulationStore.state);
+      console.log("Antes de actualizar global state:", simulationStore.state.state.simulationForm);
+      updateSimulationForm({
+        capitalSeed: value.capitalSeed, // Asignamos el valor del formulario a 'capitalSeed'
+        benefitType: value.benefitType,
+        duration: value.duration,
+      });
+      console.log("Después de actualizar global state:", simulationStore.state.state.simulationForm);
+      console.log("Formulario enviado:", value);
     },
   });
 
@@ -49,10 +55,10 @@ export const FormSection = () => {
         <div className="flex flex-col gap-4 h-fit md:flex-row items-center justify-evenly bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
           {/* Campo Capital */}
           <form.AppField
-            name="capital"
+            name="capitalSeed"
             children={(field) => (
               <field.FormInput
-                label="Capital"
+                label="Capital Seed"
                 value={field.state.value}
                 handleChange={(value: string | number) => {
                   const numericValue =

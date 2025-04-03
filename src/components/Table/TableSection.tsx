@@ -1,17 +1,25 @@
+// TableSection.tsx
 import { Table } from './Table';
+import { useCalculations, SimulationForm } from '../../hooks/useCalculations';
+import { useSimulationForm } from '../../hooks/useSimulationForm';
+
 export const TableSection = () => {
-  const dataCols = ["Mes", "Capital Base", "Ganacia del Mes", "Saldo Acumulado Bruto"];
-  const dataRows = [
-    ["1", "Dato 2", "Dato 3", "Dato 4"],
-    ["2", "Dato 2", "Dato 3", "Dato 4"],
-    ["3", "Dato 2", "Dato 3", "Dato 4"],
-  ]
+  const simulationForm = useSimulationForm();
+  const calculatedRows = useCalculations(simulationForm as SimulationForm);
+
+  const dataCols = [
+    "Mes",
+    "Capital Base",
+    "Ganancia del Mes",
+    "Saldo Acumulado Bruto"
+  ];
+
   return (
-    <section className='w-full h-fit'>
-      <Table
-        columns={dataCols}
-        rows={dataRows}
+    <section className="w-full h-fit">
+      <Table 
+        columns={dataCols} 
+        rows={calculatedRows} 
       />
     </section>
-  )
-}
+  );
+};
