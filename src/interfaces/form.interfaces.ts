@@ -24,4 +24,5 @@ export interface FormInputProps {
     value: number;
     type?: string;
     handleChange: (value: string | number ) => void;
+    helperText?: string;
 }

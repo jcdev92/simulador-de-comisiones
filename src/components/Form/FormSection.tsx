@@ -35,7 +35,7 @@ export const FormSection = () => {
     },
   });
 
-  
+
   return (
     <form
       onSubmit={(e) => {
@@ -44,7 +44,7 @@ export const FormSection = () => {
       }}
     >
       <section className="w-full h-fit">
-        <div className="flex flex-col h-fit md:flex-row items-center justify-evenly bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
+        <div className="flex flex-col gap-4 h-fit md:flex-row items-center justify-evenly bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
           {/* Campo Capital */}
           <form.AppField
             name="capital"
@@ -59,6 +59,7 @@ export const FormSection = () => {
                       : value;
                   field.handleChange(numericValue);
                 }}
+                helperText={field.state.meta.errors[0]?.message}
               />
             )}
           />
@@ -78,8 +79,8 @@ export const FormSection = () => {
                 ]}
                 borderColor="red-500"
                 focusColor="red-500"
-                helperText="" // Puedes ajustar según tus necesidades
-                helperTextColor="red-600"
+                helperText={field.state.meta.errors[0]?.message}
+                helperTextColor={field.state.meta.errors[0] ? 'text-red-600' : 'text-teal-600'}
                 icon={null}
               />
             )}
@@ -109,10 +110,12 @@ export const FormSection = () => {
                 ]}
                 borderColor="teal-500"
                 focusColor="teal-500"
+                helperText={field.state.meta.errors[0]?.message}
+                helperTextColor={field.state.meta.errors[0] ? 'text-red-600' : 'text-teal-600'}
+                icon={null}
               />
             )}
           />
-
           <form.AppForm>
             <form.FormButton label="Calcular" />
           </form.AppForm>
