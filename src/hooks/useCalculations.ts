@@ -1,4 +1,3 @@
-// useCalculations.ts
 import { useMemo } from 'react';
 
 export interface SimulationForm {

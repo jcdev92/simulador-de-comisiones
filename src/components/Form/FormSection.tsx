@@ -1,18 +1,13 @@
 import { z } from 'zod';
 import { createFormHook, createFormHookContexts } from '@tanstack/react-form';
 import { FormInput, FormSelect, FormButton } from './';
-import { simulationStore, updateSimulationForm } from '../../stores/simulationStore'
+import { updateSimulationForm } from '../../stores/simulationStore';
 
 const { fieldContext, formContext } = createFormHookContexts();
 
 const { useAppForm } = createFormHook({
-  fieldComponents: {
-    FormInput,
-    FormSelect,
-  },
-  formComponents: {
-    FormButton,
-  },
+  fieldComponents: { FormInput, FormSelect },
+  formComponents: { FormButton },
   fieldContext,
   formContext,
 });
@@ -32,17 +27,10 @@ export const FormSection = () => {
       }),
     },
     onSubmit: ({ value }) => {
-      console.log("Antes de actualizar global state:", simulationStore.state.state.simulationForm);
-      updateSimulationForm({
-        capitalSeed: value.capitalSeed, // Asignamos el valor del formulario a 'capitalSeed'
-        benefitType: value.benefitType,
-        duration: value.duration,
-      });
-      console.log("Después de actualizar global state:", simulationStore.state.state.simulationForm);
-      console.log("Formulario enviado:", value);
+      const { capitalSeed, benefitType, duration } = value;
+      updateSimulationForm({ capitalSeed, benefitType, duration });
     },
   });
-
 
   return (
     <form
@@ -53,7 +41,7 @@ export const FormSection = () => {
     >
       <section className="w-full h-fit">
         <div className="flex flex-col gap-4 h-fit md:flex-row items-center justify-evenly bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
-          {/* Campo Capital */}
+          {/* Campo Capital Seed */}
           <form.AppField
             name="capitalSeed"
             children={(field) => (
@@ -72,7 +60,7 @@ export const FormSection = () => {
             )}
           />
 
-          {/* Campo Type de Beneficio */}
+          {/* Campo Tipo de Beneficio */}
           <form.AppField
             name="benefitType"
             children={(field) => (

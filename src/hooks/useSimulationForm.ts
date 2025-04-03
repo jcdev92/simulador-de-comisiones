@@ -4,6 +4,6 @@ import { simulationStore } from '../stores/simulationStore';
 export function useSimulationForm() {
   return useSyncExternalStore(
     simulationStore.subscribe,
-    () => simulationStore.state.state.simulationForm 
+    () => simulationStore.state.simulationForm 
   );
 }
