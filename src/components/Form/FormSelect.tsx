@@ -1,50 +1,40 @@
-import { useState } from 'react';
-import { SelectComponent } from './SelectComponent';
-import { durationType, profitType } from '../../interfaces/form.interfaces';
+import React from 'react';
+import { FormSelectProps } from '../../interfaces/form.interfaces';
 
-export const FormSelect = () => {
-    const [selectedBenefit, setSelectedBenefit] = useState<string>('');
-    const [selectedDuration, setSelectedDuration] = useState<string>('');
-
-    const benefitOptions: { value: profitType; label: string }[] = [
-        { value: '', label: 'Selecciona el tipo de beneficio' },
-        { value: 'simple', label: 'Beneficio de Interes Simple' },
-        { value: 'compound', label: 'Beneficio de Interes Compuesto' },
-    ];
-
-    const durationOptions: { value: durationType; label: string }[] = [
-        { value: 0, label: 'Seleccione el tiempo' },
-        { value: 1, label: '1 mes' },
-        { value: 3, label: '3 meses' },
-        { value: 6, label: '6 meses' },
-        { value: 9, label: '9 meses' },
-        { value: 12, label: '12 meses' },
-    ];
-
-    return (
-        <div className="flex flex-col md:flex-row gap-4 h-fit">
-            <SelectComponent
-                label="Tipos de Beneficios"
-                options={benefitOptions}
-                selectedValue={selectedBenefit}
-                setSelectedValue={setSelectedBenefit}
-                borderColor="red-500"
-                focusColor="red-500"
-                helperText=""
-                helperTextColor="red-600"
-                icon=""
-            />
-            <SelectComponent
-                label="Tiempo de Duracion"
-                options={durationOptions}
-                selectedValue={selectedDuration}
-                setSelectedValue={setSelectedDuration}
-                borderColor="teal-500"
-                focusColor="teal-500"
-                helperText=""
-                helperTextColor="teal-600"
-                icon=""
-            />
+export const FormSelect: React.FC<FormSelectProps> = ({
+  label,
+  options,
+  value,
+  handleChange,
+  borderColor,
+  focusColor,
+  helperText,
+  helperTextColor,
+  icon,
+}) => {
+  return (
+    <div className="h-fit">
+      <label htmlFor="select" className="block text-sm font-medium mb-2">
+        {label}
+      </label>
+      <div className="relative">
+        <select
+          id="select"
+          value={value}
+          onChange={(e) => handleChange(e.target.value)}
+          className={`py-3 px-4 pe-16 block w-full border-${borderColor} rounded-lg text-sm focus:border-${focusColor} focus:ring-${focusColor} disabled:opacity-50 disabled:pointer-events-none`}
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <div className="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-8">
+          {icon}
         </div>
-    );
+      </div>
+      <p className={`text-sm text-${helperTextColor} mt-2`}>{helperText}</p>
+    </div>
+  );
 };

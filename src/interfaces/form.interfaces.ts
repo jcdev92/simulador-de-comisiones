@@ -7,14 +7,21 @@ export type SelectOption = {
     label: string;
 };
 
-export interface ComissionSimulatorSelectProps {
+export interface FormSelectProps {
     label: string;
     options: SelectOption[];
-    selectedValue: string;
-    setSelectedValue: (value: string) => void;
+    value: string | number;
+    handleChange: (value: string | number) => void;
     borderColor: string;
     focusColor: string;
-    helperText: string;
-    helperTextColor: string;
-    icon: React.ReactNode;
+    helperText?: string;
+    helperTextColor?: string;
+    icon?: React.ReactNode;
+  }
+
+export interface FormInputProps {
+    label: string;
+    value: number;
+    type?: string;
+    handleChange: (value: string | number ) => void;
 }
