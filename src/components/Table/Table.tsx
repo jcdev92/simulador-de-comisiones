@@ -1,9 +1,10 @@
 interface TableProps {
   columns: string[];
   rows: Array<string[]>;
+  summaryRow?: string[];
 }
 
-export const Table = ({ columns, rows }: TableProps) => {
+export const Table = ({ columns, rows, summaryRow }: TableProps) => {
   return (
     <div className="overflow-x-auto mx-4 my-6 shadow-lg border border-blue-500 rounded-2xl">
       <table className="min-w-full bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl">
@@ -16,14 +17,26 @@ export const Table = ({ columns, rows }: TableProps) => {
         </thead>
         <tbody className="text-gray-700">
           {rows.map((row, rowIndex) => (
-            <tr key={rowIndex} className={rowIndex % 2 === 0 ? "hover:bg-blue-100" : "bg-blue-50 hover:bg-blue-100"}>
+            <tr
+              key={rowIndex}
+              className={rowIndex % 2 === 0 ? "hover:bg-blue-100" : "bg-blue-50 hover:bg-blue-100"}
+            >
               {row.map((cell, cellIndex) => (
                 <td key={cellIndex} className="px-6 py-4">{cell}</td>
               ))}
             </tr>
           ))}
         </tbody>
+        {summaryRow && (
+          <tfoot className="font-bold bg-blue-200">
+            <tr>
+              {summaryRow.map((cell, index) => (
+                <td key={index} className="px-6 py-4">{cell}</td>
+              ))}
+            </tr>
+          </tfoot>
+        )}
       </table>
     </div>
-  )
-}
+  );
+};
