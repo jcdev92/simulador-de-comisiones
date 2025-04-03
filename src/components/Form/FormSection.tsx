@@ -1,6 +1,4 @@
-import { FormButton } from "./FormButton"
-import { FormInput } from "./FormInput"
-import { FormSelect } from "./FormSelect"
+import { FormButton, FormInput, FormSelect } from "./"
 
 export const FormSection = () => {
     return (

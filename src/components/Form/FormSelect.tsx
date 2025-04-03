@@ -1,23 +1,24 @@
 import { useState } from 'react';
 import { SelectComponent } from './SelectComponent';
+import { durationType, profitType } from '../../interfaces/form.interfaces';
 
 export const FormSelect = () => {
     const [selectedBenefit, setSelectedBenefit] = useState<string>('');
     const [selectedDuration, setSelectedDuration] = useState<string>('');
 
-    const benefitOptions = [
+    const benefitOptions: { value: profitType; label: string }[] = [
         { value: '', label: 'Selecciona el tipo de beneficio' },
         { value: 'simple', label: 'Beneficio de Interes Simple' },
         { value: 'compound', label: 'Beneficio de Interes Compuesto' },
     ];
 
-    const durationOptions = [
-        { value: '', label: 'Seleccione el tiempo' },
-        { value: '1', label: '1 mes' },
-        { value: '3', label: '3 meses' },
-        { value: '6', label: '6 meses' },
-        { value: '9', label: '9 meses' },
-        { value: '12', label: '12 meses' },
+    const durationOptions: { value: durationType; label: string }[] = [
+        { value: 0, label: 'Seleccione el tiempo' },
+        { value: 1, label: '1 mes' },
+        { value: 3, label: '3 meses' },
+        { value: 6, label: '6 meses' },
+        { value: 9, label: '9 meses' },
+        { value: 12, label: '12 meses' },
     ];
 
     return (

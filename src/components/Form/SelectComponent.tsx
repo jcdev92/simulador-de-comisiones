@@ -1,21 +1,5 @@
 import React from 'react';
-
-interface SelectOption {
-    value: string;
-    label: string;
-}
-
-interface ComissionSimulatorSelectProps {
-    label: string;
-    options: SelectOption[];
-    selectedValue: string;
-    setSelectedValue: (value: string) => void;
-    borderColor: string;
-    focusColor: string;
-    helperText: string;
-    helperTextColor: string;
-    icon: React.ReactNode;
-}
+import { ComissionSimulatorSelectProps } from '../../interfaces/form.interfaces';
 
 export const SelectComponent: React.FC<ComissionSimulatorSelectProps> = ({
     label,

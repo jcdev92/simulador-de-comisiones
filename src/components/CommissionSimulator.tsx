@@ -1,5 +1,4 @@
-import { FormSection } from '.';
-import { TableSection } from './Table/TableSection';
+import { FormSection, TableSection } from '.';
 export const CommissionSimulator = () => {
 
     return (
