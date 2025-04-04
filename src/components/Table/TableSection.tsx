@@ -1,7 +1,7 @@
 import { Table } from './Table';
 import { useCalculations, SimulationForm } from '../../hooks/useCalculations';
 import { useSimulationForm } from '../../hooks/useSimulationForm';
-import { PaymentSection } from '../Payments/PaymentsSection';
+import { PaymentSection } from '../Payment/PaymentSection';
 import { ExportCsvButton } from './ExportCsvButton';
 
 export const TableSection = () => {

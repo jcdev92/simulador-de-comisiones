@@ -6,7 +6,7 @@ interface TableProps {
 
 export const Table = ({ columns, rows, summaryRow }: TableProps) => {
   return (
-    <div className="overflow-x-auto mx-4 my-6 shadow-lg border border-blue-500 rounded-2xl">
+    <div className="overflow-x-auto mx-4 my-6 shadow-lg border border-blue-500 rounded-2xl w-5/6">
       <table className="min-w-full bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl">
         <thead>
           <tr className="text-left text-white bg-blue-500">
