@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { createFormHook, createFormHookContexts } from '@tanstack/react-form';
 import { FormInput, FormSelect, FormButton } from './';
-import { updateSimulationForm } from '../../stores/simulationStore';
+import { resetSimulationStore, updateSimulationForm } from '../../stores/simulationStore';
 
 const { fieldContext, formContext } = createFormHookContexts();
 
@@ -32,6 +32,12 @@ export const FormSection = () => {
     },
   });
 
+  const handleReset = () => {
+    form.reset(); 
+    resetSimulationStore(); 
+  };
+
+
   return (
     <form
       onSubmit={(e) => {
@@ -40,13 +46,13 @@ export const FormSection = () => {
       }}
     >
       <section className="w-full h-fit">
-        <div className="flex flex-col gap-4 h-fit md:flex-row items-center justify-evenly bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
+        <div className="flex flex-col gap-4 h-fit md:flex-row items-center justify-evenly bg-gradient-to-r bg-sky-600 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
           {/* Campo Capital Seed */}
           <form.AppField
             name="capitalSeed"
             children={(field) => (
               <field.FormInput
-                label="Capital Seed"
+                label="Capital Semilla"
                 value={field.state.value}
                 handleChange={(value: string | number) => {
                   const numericValue =
@@ -115,6 +121,13 @@ export const FormSection = () => {
           <form.AppForm>
             <form.FormButton label="Calcular" />
           </form.AppForm>
+          <button
+              type="button"
+              onClick={handleReset}
+              className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600"
+            >
+              Resetear
+            </button>
         </div>
       </section>
     </form>
