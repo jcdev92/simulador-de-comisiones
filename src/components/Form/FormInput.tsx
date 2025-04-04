@@ -2,7 +2,7 @@ import type { FormInputProps } from '../../interfaces/form.interfaces';
 
 export const FormInput: React.FC<FormInputProps> = ({ label, value, type = 'number', handleChange, helperText }) => {
     return (
-        <div className="sm:flex rounded-lg h-fit">
+        <div className="sm:flex rounded-lg h-fit ">
             <label className="py-2.5 sm:py-3 px-4 inline-flex items-center min-w-fit w-full border border-gray-200 bg-gray-50 sm:text-sm text-gray-500 rounded-l-md">
                 {
                     helperText ? <span className="text-red-600">{helperText}</span> : label

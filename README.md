@@ -1,5 +1,11 @@
 # React + TypeScript + Vite
 
+# NOTA: Instalar dependencias con legacy por que esta en recat 19 y algunas librerias como tan stack router por ahora llegan a la version 18 de React.
+
+```bash
+npm install --legacy-peer-deps
+```
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

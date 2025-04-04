@@ -46,7 +46,7 @@ export const FormSection = () => {
       }}
     >
       <section className="w-full h-fit">
-        <div className="flex flex-col gap-4 h-fit md:flex-row items-center justify-evenly bg-gradient-to-r bg-sky-600 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
+        <div className="flex flex-col gap-8 h-fit md:flex-row items-center justify-evenly bg-gradient-to-r bg-sky-600 rounded-2xl mx-4 p-8 shadow-lg border border-blue-500">
           <form.AppField
             name="capitalSeed"
             children={(field) => (
