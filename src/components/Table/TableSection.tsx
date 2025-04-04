@@ -1,11 +1,10 @@
-// TableSection.tsx
 import { Table } from './Table';
 import { useCalculations, SimulationForm } from '../../hooks/useCalculations';
 import { useSimulationForm } from '../../hooks/useSimulationForm';
+import { PaymentSection } from '../Payments/PaymentsSection';
 
 export const TableSection = () => {
   const simulationForm = useSimulationForm();
-  // Asumamos que useCalculations devuelve un objeto con las filas, fee y net
   const { calculatedRows, fee, net } = useCalculations(simulationForm as SimulationForm);
 
   const dataCols = [
@@ -29,6 +28,7 @@ export const TableSection = () => {
         rows={calculatedRows}
         summaryRow={summaryRow}
       />
+      <PaymentSection fundsGoal={simulationForm.capitalSeed} />
     </section>
   );
 };

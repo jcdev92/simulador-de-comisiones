@@ -17,6 +17,7 @@
     "@tanstack/react-query-devtools": "^4.36.1",
     "@tanstack/react-store": "^0.7.0",
     "preline": "^3.0.1",
+    "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwindcss": "^4.1.1",
