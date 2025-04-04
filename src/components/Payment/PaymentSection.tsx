@@ -147,7 +147,9 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
         <div className="mt-4 flex flex-col items-center">
           <h3 className="text-lg font-medium mb-2">Escanea este código QR para depositar</h3>
           <QRCodeCanvas value={paymentData.address} size={200} />
-          <p className="mt-2 text-sm text-gray-700">Dirección: {paymentData.address}</p>
+          <p className="mt-2 text-sm text-gray-700 break-words max-w-full overflow-hidden text-ellipsis">
+            Dirección: {paymentData.address}
+          </p>
         </div>
       )}
 
@@ -155,7 +157,7 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
         <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm z-50">
           <div className="bg-white p-6 rounded shadow-md max-w-lg w-full">
             <h2 className="text-xl font-medium mb-4">Estado del Pago</h2>
-            <pre className="bg-gray-100 p-2 rounded text-sm">
+            <pre className="bg-gray-100 p-2 rounded text-sm break-words max-w-full overflow-hidden text-ellipsis">
               {JSON.stringify(paymentStatus, null, 2)}
             </pre>
             {paymentStatus.amountCaptured > 0 && (
@@ -164,12 +166,12 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
               </p>
             )}
             {paymentStatus.address && (
-              <p className="mt-2 text-sm text-gray-700 truncate">
+              <p className="mt-2 text-sm text-gray-700 break-words max-w-full overflow-hidden text-ellipsis">
                 Dirección: {paymentStatus.address}
               </p>
             )}
             {paymentStatus.smartContractAddress && (
-              <p className="mt-2 text-sm text-gray-700 truncate">
+              <p className="mt-2 text-sm text-gray-700 break-words max-w-full overflow-hidden text-ellipsis">
                 Smart Contract: {paymentStatus.smartContractAddress}
               </p>
             )}
