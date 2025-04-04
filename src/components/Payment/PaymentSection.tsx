@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
 import { resetSimulationStore } from '../../stores/simulationStore';
+import { setMessage } from '../../stores/messageStore';
 
 const API_KEY = 'o0z8y85rjdx28iqef32f4mrl6e56b71742437588342';
 const API_BASE_URL = 'https://my.disruptivepayments.io/api';
@@ -43,12 +44,12 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Client-API-Key': API_KEY
+          'Client-API-Key': API_KEY,
         },
         body: JSON.stringify({
           network: 'BSC',
           fundsGoal: fundsGoal,
-          smartContractAddress: '0x7cDb78AD26670D5bc4A35504b0e5127909D4B35b'
+          smartContractAddress: '0x7cDb78AD26670D5bc4A35504b0e5127909D4B35b',
         }),
       });
 
@@ -56,10 +57,17 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
       if (res.ok && data.data) {
         setPaymentData(data.data);
       } else {
+        setMessage({ text: data?.errorMessage || "Error creating payment", type: "error" });
         console.error('Error creating payment', data);
       }
-    } catch (error) {
-      console.error('Error en Depositar Ahora', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error en Depositar Ahora', error);
+        setMessage({ text: error.message || "Error en Depositar Ahora", type: "error" });
+      } else {
+        console.error('Error en Depositar Ahora', error);
+        setMessage({ text: "Error en Depositar Ahora", type: "error" });
+      }
     } finally {
       setLoading(false);
     }
@@ -85,22 +93,29 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
         setModalVisible(true);
       } else {
         console.error('Error checking payment status', data);
+        setMessage({ text: data?.errorMessage || "Error checking payment status", type: "error" });
       }
-    } catch (error) {
-      console.error('Error en Revisar Pago', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error en Revisar Pago', error);
+        setMessage({ text: error.message || "Error en Revisar Pago", type: "error" });
+      } else {
+        console.error('Error en Revisar Pago', error);
+        setMessage({ text: "Error en Revisar Pago", type: "error" });
+      }
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="p-4 bg-gradient-to-r bg-sky-600  border border-gray-300 rounded-2xl shadow-md">
+    <div className="p-4 w-5/6 bg-gradient-to-r bg-sky-600 border border-gray-300 rounded-2xl shadow-md">
       {loading && (
         <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm z-50">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
         </div>
       )}
-      <div className="flex flex-row justify-around items-center">
+      <div className="w-full flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-around items-center">
         <button
           onClick={handleDepositNow}
           className="px-4 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 transition disabled:opacity-50"

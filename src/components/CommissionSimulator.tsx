@@ -1,4 +1,5 @@
 import { FormSection, TableSection } from '.';
+import { ModalMessage } from './Message/ModalMessage';
 export const CommissionSimulator = () => {
 
     return (
@@ -8,6 +9,7 @@ export const CommissionSimulator = () => {
             </h1>
             <FormSection />
             <TableSection />
+            <ModalMessage />
         </div>
     )
 }
