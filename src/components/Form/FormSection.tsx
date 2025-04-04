@@ -33,8 +33,8 @@ export const FormSection = () => {
   });
 
   const handleReset = () => {
-    form.reset(); 
-    resetSimulationStore(); 
+    form.reset();
+    resetSimulationStore();
   };
 
 
@@ -101,7 +101,6 @@ export const FormSection = () => {
                 }}
                 options={[
                   { value: 0, label: 'Seleccione el tiempo' },
-                  { value: 1, label: '1 mes' },
                   { value: 3, label: '3 meses' },
                   { value: 6, label: '6 meses' },
                   { value: 9, label: '9 meses' },
@@ -116,7 +115,7 @@ export const FormSection = () => {
             )}
           />
           <form.AppForm>
-            <form.FormButton label="Calcular" type="submit" color="bg-green-500" hoverColor="hover:bg-green-600" focusColor="focus:ring-green-400"/>
+            <form.FormButton label="Calcular" type="submit" color="bg-green-500" hoverColor="hover:bg-green-600" focusColor="focus:ring-green-400" />
             <form.FormButton label="Reset" type="button" onClick={handleReset} color="bg-red-500" hoverColor='hover:bg-red-600' />
           </form.AppForm>
         </div>
