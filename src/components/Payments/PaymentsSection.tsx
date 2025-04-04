@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { QRCodeCanvas } from 'qrcode.react';
+import { resetSimulationStore } from '../../stores/simulationStore';
 
 const API_KEY = 'o0z8y85rjdx28iqef32f4mrl6e56b71742437588342';
 const API_BASE_URL = 'https://my.disruptivepayments.io/api';
@@ -35,7 +36,6 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
   const [loading, setLoading] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
 
-
   const handleDepositNow = async () => {
     setLoading(true);
     try {
@@ -64,7 +64,6 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
       setLoading(false);
     }
   };
-
 
   const handleCheckPayment = async () => {
     if (!paymentData || !paymentData.address) return;
@@ -95,45 +94,51 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
   };
 
   return (
-    <div className="payment-section p-4 border rounded shadow-lg">
-      <button
-        onClick={handleDepositNow}
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        disabled={loading}
-      >
-        Depositar Ahora
-      </button>
+    <div className="p-4 bg-gradient-to-r bg-sky-600  border border-gray-300 rounded-2xl shadow-md">
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm z-50">
+          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+        </div>
+      )}
+      <div className="flex flex-row justify-around items-center">
+        <button
+          onClick={handleDepositNow}
+          className="px-4 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 transition disabled:opacity-50"
+          disabled={loading}
+        >
+          Depositar Ahora
+        </button>
 
+        <button
+          onClick={handleCheckPayment}
+          className="px-4 py-2 bg-green-500 text-white font-medium rounded hover:bg-green-600 transition disabled:opacity-50"
+          disabled={loading || !paymentData}
+        >
+          Revisar Pago
+        </button>
+
+        <button
+          onClick={() => {
+            resetSimulationStore();
+            setPaymentData(null);
+            setPaymentStatus(null);
+          }}
+          className="px-4 py-2 bg-red-500 text-white font-medium rounded hover:bg-red-600 transition"
+        >
+          Resetear
+        </button>
+      </div>
       {paymentData && paymentData.address && (
         <div className="mt-4 flex flex-col items-center">
           <h3 className="text-lg font-medium mb-2">Escanea este código QR para depositar</h3>
           <QRCodeCanvas value={paymentData.address} size={200} />
-          <p className="mt-2">Dirección: {paymentData.address}</p>
+          <p className="mt-2 text-sm text-gray-700">Dirección: {paymentData.address}</p>
         </div>
       )}
 
-      <button
-        onClick={handleCheckPayment}
-        className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 mt-4"
-        disabled={loading || !paymentData}
-      >
-        Revisar Pago
-      </button>
-
-      {/* boton de reseteo */}
-      <button
-        onClick={() => {
-          setPaymentData(null);
-          setPaymentStatus(null);
-        }}
-        className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 mt-4"
-      >
-        Resetear
-      </button>
-
       {modalVisible && paymentStatus && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded shadow-md max-w-md w-full">
+        <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-sm z-50">
+          <div className="bg-white p-6 rounded shadow-md max-w-lg w-full">
             <h2 className="text-xl font-medium mb-4">Estado del Pago</h2>
             <pre className="bg-gray-100 p-2 rounded text-sm">
               {JSON.stringify(paymentStatus, null, 2)}
@@ -141,6 +146,16 @@ export const PaymentSection: React.FC<{ fundsGoal: number }> = ({ fundsGoal }) =
             {paymentStatus.amountCaptured > 0 && (
               <p className="mt-2 text-green-600 font-bold">
                 ¡El pago ha sido recibido!
+              </p>
+            )}
+            {paymentStatus.address && (
+              <p className="mt-2 text-sm text-gray-700 truncate">
+                Dirección: {paymentStatus.address}
+              </p>
+            )}
+            {paymentStatus.smartContractAddress && (
+              <p className="mt-2 text-sm text-gray-700 truncate">
+                Smart Contract: {paymentStatus.smartContractAddress}
               </p>
             )}
             <button

@@ -1,16 +1,16 @@
 import { useMemo } from 'react';
 
 export interface SimulationForm {
-  capitalSeed: number;  
-  duration: 3 | 6 | 9 | 12;
+  capitalSeed: number;
+  duration: 3 | 6 | 9 | 12 | 0;  // agregamos 0 para el caso “no seleccionado”
   benefitType: 'simple' | 'compound';
 }
 
 export function useCalculations(simulationForm: SimulationForm) {
   return useMemo(() => {
-
     const { capitalSeed, duration, benefitType } = simulationForm;
     const numericCapitalSeed = Number(capitalSeed) || 0;
+
 
     if (numericCapitalSeed <= 0) {
       return {
@@ -20,13 +20,26 @@ export function useCalculations(simulationForm: SimulationForm) {
       };
     }
 
+
     const monthlyPercentages: Record<number, number> = {
       3: 1,
       6: 2,
       9: 3,
       12: 4,
     };
-    const monthlyRate = monthlyPercentages[duration] / 100;
+
+
+    const percentage = monthlyPercentages[duration];
+    if (percentage === undefined) {
+
+      return {
+        calculatedRows: [["1", numericCapitalSeed.toFixed(2), "0.00", numericCapitalSeed.toFixed(2)]],
+        fee: "0.00",
+        net: numericCapitalSeed.toFixed(2),
+      };
+    }
+
+    const monthlyRate = percentage / 100;
 
     const calculatedRows: string[][] = [];
     let finalAccumulated = 0;
@@ -59,6 +72,7 @@ export function useCalculations(simulationForm: SimulationForm) {
       }
       finalAccumulated = base;
     }
+
 
     let feeRate = 0;
     if (numericCapitalSeed >= 1 && numericCapitalSeed <= 1000) {
