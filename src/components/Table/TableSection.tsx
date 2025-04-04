@@ -15,10 +15,9 @@ export const TableSection = () => {
     "Saldo Acumulado Bruto"
   ];
 
-  // Construimos la fila de resumen. Puedes ajustar el orden y contenido según tu diseño.
   const summaryRow = [
-    "Totales",         // O podrías dejarla vacía si prefieres
-    "",                // Espacio para dejar celdas vacías
+    "Totales",      
+    "",               
     `Fee: $${fee}`,    
     `Neto: $${net}`
   ];

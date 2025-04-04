@@ -3,7 +3,7 @@ export const initialState = {
   // Datos entren del formulario de simulación
   simulationForm: {
     capitalSeed: 0,            // Capital semilla ingresado por el usuario (número)
-    duration: 3,               // Duración elegida (3, 6, 9 o 12 meses; valor numérico)
+    duration: 1,               // Duración elegida (3, 6, 9 o 12 meses; valor numérico)
     benefitType: 'simple',     // Tipo de beneficio: 'simple' o 'compound'
   },
   // Resultado de la simulación mes a mes
