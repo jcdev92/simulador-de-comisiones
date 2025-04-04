@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <div className='w-full h-fit md:h-screen bg-gradient-to-r from-blue-900 via-indigo-800 to-blue-600'>
+      <div className='w-full h-fit md:min-h-screen bg-gradient-to-r from-blue-900 via-indigo-800 to-blue-600'>
         <CommissionSimulator />
       </div>
     </>

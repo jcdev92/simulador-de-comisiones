@@ -119,8 +119,8 @@ export const FormSection = () => {
             )}
           />
           <form.AppForm>
-            <form.FormButton label="Calcular" type="submit" className="px-6 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition-transform transform hover:scale-105 active:scale-95"/>
-            <form.FormButton label="Reset" type="button" onClick={handleReset} className="px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600" />
+            <form.FormButton label="Calcular" type="submit" color="bg-green-500" hoverColor="hover:bg-green-600" focusColor="focus:ring-green-400"/>
+            <form.FormButton label="Reset" type="button" onClick={handleReset} color="bg-red-500" hoverColor='hover:bg-red-600' />
           </form.AppForm>
         </div>
       </section>

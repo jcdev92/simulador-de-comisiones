@@ -16,18 +16,18 @@ export const TableSection = () => {
   ];
 
   const summaryRow = [
-    "Totales",      
-    "",               
-    `Fee: $${fee}`,    
+    "Totales",
+    "",
+    `Fee: $${fee}`,
     `Neto: $${net}`
   ];
 
   return (
-    <section className="w-full h-fit">
-      <Table 
-        columns={dataCols} 
+    <section className="w-full md:w-[70%] h-fit">
+      <Table
+        columns={dataCols}
         rows={calculatedRows}
-        summaryRow={summaryRow} 
+        summaryRow={summaryRow}
       />
     </section>
   );
