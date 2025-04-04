@@ -2,6 +2,7 @@ import { Table } from './Table';
 import { useCalculations, SimulationForm } from '../../hooks/useCalculations';
 import { useSimulationForm } from '../../hooks/useSimulationForm';
 import { PaymentSection } from '../Payments/PaymentsSection';
+import { ExportCsvButton } from './ExportCsvButton';
 
 export const TableSection = () => {
   const simulationForm = useSimulationForm();
@@ -22,7 +23,8 @@ export const TableSection = () => {
   ];
 
   return (
-    <section className="w-full md:w-[70%] h-fit">
+    <section className="w-full md:w-[70%] h-fit flex flex-col items-center justify-center bg-gradient-to-r from-blue-400 via-sky-300 to-blue-400 rounded-2xl mx-4 p-4 shadow-lg border border-blue-500">
+      <ExportCsvButton headers={dataCols} data={calculatedRows} summaryRow={summaryRow} />
       <Table
         columns={dataCols}
         rows={calculatedRows}
