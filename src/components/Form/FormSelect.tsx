@@ -6,6 +6,7 @@ export const FormSelect: React.FC<FormSelectProps> = ({
     options,
     value,
     handleChange,
+    labelColor,
     borderColor,
     focusColor,
     helperText,
@@ -15,7 +16,7 @@ export const FormSelect: React.FC<FormSelectProps> = ({
     const id = useId();
     return (
         <div className="h-fit">
-            <label htmlFor={`select-${id}`} className="block text-sm font-medium mb-2">
+            <label htmlFor={`select-${id}`} className={`block text-sm text-s font-medium mb-2 ${labelColor}`}>
                 {label}
             </label>
             <div className="relative">
@@ -23,10 +24,10 @@ export const FormSelect: React.FC<FormSelectProps> = ({
                     id={`select-${id}`}
                     value={value}
                     onChange={(e) => handleChange(e.target.value)}
-                    className={`py-3 px-4 pe-16 block w-full border-${borderColor} rounded-lg text-sm focus:border-${focusColor} focus:ring-${focusColor} disabled:opacity-50 disabled:pointer-events-none`}
+                    className={`py-3 px-4 pe-16 block w-full ${borderColor} rounded-lg text-sm focus:${focusColor} focus:${focusColor} disabled:opacity-50 disabled:pointer-events-none hover:cursor-pointer bg-white/70 backdrop-blur-md`}
                 >
                     {options.map((option) => (
-                        <option key={option.value} value={option.value}>
+                        <option className='bg-sky-700/70 backdrop-blur-md' key={option.value} value={option.value}>
                             {option.label}
                         </option>
                     ))}

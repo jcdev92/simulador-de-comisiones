@@ -12,6 +12,7 @@ export interface FormSelectProps {
     options: SelectOption[];
     value: string | number;
     handleChange: (value: string | number) => void;
+    labelColor: string;
     borderColor: string;
     focusColor: string;
     helperText?: string;

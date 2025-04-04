@@ -77,8 +77,9 @@ export const FormSection = () => {
                   { value: 'simple', label: 'Beneficio de Interes Simple' },
                   { value: 'compound', label: 'Beneficio de Interes Compuesto' },
                 ]}
-                borderColor="red-500"
-                focusColor="red-500"
+                labelColor="text-red-600"
+                borderColor="border-red-500"
+                focusColor="border-red-500"
                 helperText={field.state.meta.errors[0]?.message}
                 helperTextColor={field.state.meta.errors[0] ? 'text-red-600' : 'text-teal-600'}
                 icon={null}
@@ -106,8 +107,9 @@ export const FormSection = () => {
                   { value: 9, label: '9 meses' },
                   { value: 12, label: '12 meses' },
                 ]}
-                borderColor="teal-500"
-                focusColor="teal-500"
+                labelColor="text-teal-500"
+                borderColor="border-teal-500"
+                focusColor="border-teal-500"
                 helperText={field.state.meta.errors[0]?.message}
                 helperTextColor={field.state.meta.errors[0] ? 'text-red-600' : 'text-teal-600'}
                 icon={null}
