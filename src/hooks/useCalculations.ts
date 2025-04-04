@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 
 export interface SimulationForm {
   capitalSeed: number;
-  duration: 3 | 6 | 9 | 12 | 0;  // agregamos 0 para el caso “no seleccionado”
+  duration: 3 | 6 | 9 | 12 | 0; 
   benefitType: 'simple' | 'compound';
 }
 
